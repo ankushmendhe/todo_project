@@ -1,0 +1,14 @@
+{% extends 'todo/base.html' %}
+{% block content %}
+<h1 align="center">Add Items</h1><hr>
+<form method="POST">
+    {% csrf_token %}
+    <table border="2px">
+        <thead></thead>
+
+    {{forms.as_p}}
+    </table>
+    <input type="text" name="" placeholder="addtask" >
+    <input type="submit" align="center" name="" value="Additem" class="btn btn-primary btn-lg">
+</form>
+{% endblock %}

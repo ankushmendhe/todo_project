@@ -1,0 +1,52 @@
+{% extends 'todo/base.html' %}
+
+{% block title %}
+To-Do App | Home
+{% endblock %}
+
+{% block alert %}
+  <!-- Login Request   -->
+  <!--div class="container">
+      {% if not user.is_authenticated %}
+          <div class="alert alert-info" role="alert">
+            Please login to save the app data to your account
+          </div>
+      {% endif %}
+</-div-->
+{% endblock %}
+
+{% block content %}
+    <h1>To-Do List</h1>
+    <br>
+    <div>
+      <form class="form-inline" method="post" action="/addtask/">
+        {% csrf_token %}
+        <!--input type="text" class="form-control mb-2 mr-sm-2" name="todo_task" placeholder="To-Do task" required-->
+        <button type="submit" class="btn btn-secondary mb-2">Add To List</button>
+      </form>
+
+      <br>
+
+      {% if todo_list %}
+        <table class="table  table-hover table-bordered">
+          {% for item in todo_list %}
+            <tbody>
+              {% if item.is_completed %}
+                <tr class="table-success">
+                  <td class="striker"><a href="#">{{ item.task_name }}</td>
+                  <td class="text-center"><a href="#">Completed</a></td>
+                  <td class="text-center"><a href="#">Delete</a></td>
+                </tr>
+              {% else %}
+                <tr>
+                  <td><a href="#">{{ item.task_name }}</td>
+                  <td class="text-center"><a href="#">Pending</a></td>
+                  <td class="text-center"><a href="#">Delete</a></td>
+                </tr>
+              {% endif %}
+            </tbody>
+          {% endfor %}
+        </table>
+      {% endif %}
+    </div>
+{% endblock %}
